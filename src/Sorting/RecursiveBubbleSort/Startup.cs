@@ -12,6 +12,7 @@ namespace RecursiveBubbleSort
             int[] arrayOfNumbers = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
             int arrayLength = arrayOfNumbers.Length;
             Console.WriteLine();
+
             RecursiveBubbleSortAlgorithm(arrayOfNumbers, arrayLength);
 
             Console.WriteLine("Sorted array:");

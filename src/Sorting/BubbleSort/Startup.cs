@@ -11,6 +11,7 @@ namespace BubbleSort
 
             int[] arrayOfNumbers = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
             Console.WriteLine();
+
             BubbleSortAlgorithm(arrayOfNumbers);
 
             Console.WriteLine("Sorted array:");
