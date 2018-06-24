@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckPermutation", "CheckPe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "URLify", "URLify\URLify.csproj", "{B95B2D0E-2B54-4884-8FF6-FE10F4F0F2CC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PalindromePermutation", "PalindromePermutation\PalindromePermutation.csproj", "{ADDAD4FA-F4D7-4599-B10B-5B39E762E8A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B95B2D0E-2B54-4884-8FF6-FE10F4F0F2CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B95B2D0E-2B54-4884-8FF6-FE10F4F0F2CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B95B2D0E-2B54-4884-8FF6-FE10F4F0F2CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADDAD4FA-F4D7-4599-B10B-5B39E762E8A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADDAD4FA-F4D7-4599-B10B-5B39E762E8A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADDAD4FA-F4D7-4599-B10B-5B39E762E8A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADDAD4FA-F4D7-4599-B10B-5B39E762E8A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
