@@ -12,75 +12,64 @@ namespace MergeSort
             int[] arrayOfNumbers = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
             Console.WriteLine();
 
-            MergeSortAlgorithm(arrayOfNumbers, 0, arrayOfNumbers.Length - 1);
+            MergeSortAlgorithm(arrayOfNumbers);
 
             Console.WriteLine("Sorted array:");
             Console.WriteLine(string.Join(" ", arrayOfNumbers));
         }
 
-        public static void MergeSortAlgorithm(int[] arrayOfNumbers, int left, int right)
+        public static void MergeSortAlgorithm(int[] arrayOfNumbers)
         {
-            if (left < right)
+            var helperArray = new int[arrayOfNumbers.Length];
+
+            MergeSortAlgorithm(arrayOfNumbers, helperArray, 0, arrayOfNumbers.Length - 1);
+        }
+
+        public static void MergeSortAlgorithm(int[] arrayOfNumbers, int[] helperArray, int low, int high)
+        {
+            if (low < high)
             {
-                int middle = (left + right) / 2;
+                int middle = (low + high) / 2;
 
-                MergeSortAlgorithm(arrayOfNumbers, left, middle);
-                MergeSortAlgorithm(arrayOfNumbers, middle + 1, right);
+                MergeSortAlgorithm(arrayOfNumbers, helperArray, low, middle);
+                MergeSortAlgorithm(arrayOfNumbers, helperArray, middle + 1, high);
 
-                Merge(arrayOfNumbers, left, middle, right);
+                Merge(arrayOfNumbers, helperArray, low, middle, high);
             }
         }
 
-        public static void Merge(int[] arrayOfNumbers, int left, int middle, int right)
+        public static void Merge(int[] arrayOfNumbers, int[] helperArray, int low, int middle, int high)
         {
-            var leftArrayLength = middle - left + 1;
-            var rightArrayLength = right - middle;
-
-            var leftArray = new int[leftArrayLength];
-            var rightArray = new int[rightArrayLength];
-
-            for (int i = 0; i < leftArrayLength; i++)
+            for (int i = low; i <= high; i++)
             {
-                leftArray[i] = arrayOfNumbers[left + i];
+                helperArray[i] = arrayOfNumbers[i];
             }
 
-            for (int j = 0; j < rightArrayLength; j++)
-            {
-                rightArray[j] = arrayOfNumbers[middle + j + 1];
-            }
+            var helperLeft = low;
+            var helperRight = middle + 1;
+            var current = low;
 
-            var leftIndex = 0;
-            var rightIndex = 0;
-            var mergeIndex = left;
-
-            while (leftIndex < leftArrayLength && rightIndex < rightArrayLength)
+            while (helperLeft <= middle && helperRight <= high)
             {
-                if (leftArray[leftIndex] <= rightArray[rightIndex])
+                if (helperArray[helperLeft] <= helperArray[helperRight])
                 {
-                    arrayOfNumbers[mergeIndex] = leftArray[leftIndex];
-                    leftIndex++;
+                    arrayOfNumbers[current] = helperArray[helperLeft];
+                    helperLeft++;
                 }
                 else
                 {
-                    arrayOfNumbers[mergeIndex] = rightArray[rightIndex];
-                    rightIndex++;
+                    arrayOfNumbers[current] = helperArray[helperRight];
+                    helperRight++;
                 }
 
-                mergeIndex++;
+                current++;
             }
 
-            while (leftIndex < leftArrayLength)
-            {
-                arrayOfNumbers[mergeIndex] = leftArray[leftIndex];
-                leftIndex++;
-                mergeIndex++;
-            }
+            var remaining = middle - helperLeft;
 
-            while (rightIndex < rightArrayLength)
+            for (int i = 0; i <= remaining; i++)
             {
-                arrayOfNumbers[mergeIndex] = rightArray[rightIndex];
-                rightIndex++;
-                mergeIndex++;
+                arrayOfNumbers[current + i] = helperArray[helperLeft + i];
             }
         }
     }
