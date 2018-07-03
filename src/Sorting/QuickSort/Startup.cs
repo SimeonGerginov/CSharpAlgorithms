@@ -12,45 +12,59 @@ namespace QuickSort
             int[] arrayOfNumbers = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
             Console.WriteLine();
 
-            QuickSortAlgorithm(arrayOfNumbers, 0, arrayOfNumbers.Length - 1);
+            QuickSortAlgorithm(arrayOfNumbers);
 
             Console.WriteLine("Sorted array:");
             Console.WriteLine(string.Join(" ", arrayOfNumbers));
         }
 
-        public static void QuickSortAlgorithm(int[] arrayOfNumbers, int startIndex, int endIndex)
+        public static void QuickSortAlgorithm(int[] arrayOfNumbers)
         {
-            if (startIndex < endIndex)
-            {
-                int pivotIndex = Partition(arrayOfNumbers, startIndex, endIndex);
+            QuickSortAlgorithm(arrayOfNumbers, 0, arrayOfNumbers.Length - 1);
+        }
 
-                QuickSortAlgorithm(arrayOfNumbers, startIndex, pivotIndex - 1);
-                QuickSortAlgorithm(arrayOfNumbers, pivotIndex + 1, endIndex);
+        public static void QuickSortAlgorithm(int[] arrayOfNumbers, int left, int right)
+        {
+            var index = Partition(arrayOfNumbers, left, right);
+
+            if (left < index - 1)
+            {
+                QuickSortAlgorithm(arrayOfNumbers, left, index - 1);
+            }
+            if (index < right)
+            {
+                QuickSortAlgorithm(arrayOfNumbers, index, right);
             }
         }
 
-        public static int Partition(int[] arrayOfNumbers, int startIndex, int endIndex)
+        public static int Partition(int[] arrayOfNumbers, int left, int right)
         {
-            var pivot = arrayOfNumbers[endIndex];
-            var index = startIndex - 1;
-            var tempNumber = 0;
+            var pivot = arrayOfNumbers[(left + right) / 2];
 
-            for (int i = startIndex; i < endIndex; i++)
+            while (left <= right)
             {
-                if (arrayOfNumbers[i] <= pivot)
+                while (arrayOfNumbers[left] < pivot)
                 {
-                    index++;
-                    tempNumber = arrayOfNumbers[i];
-                    arrayOfNumbers[i] = arrayOfNumbers[index];
-                    arrayOfNumbers[index] = tempNumber;
+                    left++;
+                }
+
+                while (arrayOfNumbers[right] > pivot)
+                {
+                    right--;
+                }
+
+                if (left <= right)
+                {
+                    var tempNumber = arrayOfNumbers[left];
+                    arrayOfNumbers[left] = arrayOfNumbers[right];
+                    arrayOfNumbers[right] = tempNumber;
+
+                    left++;
+                    right--;
                 }
             }
 
-            tempNumber = arrayOfNumbers[index + 1];
-            arrayOfNumbers[index + 1] = arrayOfNumbers[endIndex];
-            arrayOfNumbers[endIndex] = tempNumber;
-
-            return index + 1;
+            return left;
         }
     }
 }
